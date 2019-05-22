@@ -8,6 +8,8 @@ Artist.delete_all
 
 artist1 = Artist.new({'name' => 'The Band'})
 artist1.save
+artist2 = Artist.new({'name' => 'Miles Davis'})
+artist2.save
 
 album1 = Album.new({
   'title' => 'Music From Big Pink',
@@ -15,8 +17,15 @@ album1 = Album.new({
   'artist_id' => artist1.id
   })
 album1.save
+album2 = Album.new({
+  'title' => 'Moondog Matinee',
+  'genre' => 'Folk Rock',
+  'artist_id' => artist1.id
+  })
+album2.save
 
-
+artist_list = Artist.list_all
+album_list = Album.list_all
 
 binding.pry
 nil
