@@ -24,8 +24,8 @@ album2 = Album.new({
   })
 album2.save
 
-artist_list = Artist.list_all
-album_list = Album.list_all
+artist_list = Artist.all
+album_list = Album.all
 
 binding.pry
 nil

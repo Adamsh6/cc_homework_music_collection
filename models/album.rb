@@ -27,7 +27,7 @@ class Album
     return Artist.new(result[0])
   end
 
-  def self.list_all
+  def self.all
     sql = 'SELECT * FROM albums'
     result = SqlRunner.run(sql)
     return result.map{ |album| Album.new(album) }

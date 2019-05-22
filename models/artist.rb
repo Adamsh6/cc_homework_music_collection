@@ -5,6 +5,7 @@ require_relative('album')
 
 class Artist
 
+  attr_accessor :name
   attr_reader :id
 
   def initialize(options)
@@ -19,6 +20,12 @@ class Artist
     @id = result[0]['id']
   end
 
+  def update
+    sql = 'UPDATE artists SET name = $1 WHERE id = $2'
+    values = [@name, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def albums
     sql = 'SELECT * FROM albums WHERE artist_id = $1'
     values = [@id]
@@ -27,7 +34,7 @@ class Artist
   end
 
 
-  def self.list_all
+  def self.all
     sql = 'SELECT name FROM artists'
     result = SqlRunner.run(sql)
     return result.map{ |artist| Artist.new(artist) }
