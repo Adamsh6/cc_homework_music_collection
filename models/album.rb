@@ -11,4 +11,17 @@ class Album
     @genre = options['genre']
     @artist_id = options['artist_id']
   end
+
+  def save
+    sql = "INSERT INTO albums (title, genre, artist_id)
+    VALUES ($1, $2, $3) RETURNING id"
+    values = [@title, @genre, @artist_id]
+    result = SqlRunner.run(sql, values)
+    @id = result[0]['id']
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+  end
 end

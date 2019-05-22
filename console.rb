@@ -3,6 +3,7 @@ require('pg')
 require_relative('models/album')
 require_relative('models/artist')
 
+Album.delete_all
 Artist.delete_all
 
 artist1 = Artist.new({'name' => 'The Band'})
@@ -13,6 +14,7 @@ album1 = Album.new({
   'genre' => 'Folk Rock',
   'artist_id' => artist1.id
   })
+album1.save
 
 
 
